@@ -71,6 +71,10 @@ const updateRepos = async () => {
 
       fs.unlinkSync("Jenkinsfile");
       fs.unlinkSync("sonar-project.properties");
+
+      let command3 = `git rm Jenkinsfile &&
+       git rm sonar-project.properties`;
+      out = await execShPromise(command3, true);
     }
   } catch (e) {
     console.log("Error: ", e);
