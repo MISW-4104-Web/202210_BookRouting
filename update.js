@@ -49,8 +49,8 @@ const updateRepos = async () => {
   let out;
   try {
     for (const project of projects) {
-      fs.writeFileSync("Jenkinsfile", "//Jenkinsfile");
-      fs.writeFileSync("sonar-project.properties", "//Sonar properties file");
+      fs.writeFileSync("Jenkinsfile", "");
+      fs.writeFileSync("sonar-project.properties", "");
 
       let command1 = `git remote rm origin && git add . &&
        git commit -m "Update Jenkinsfile and sonar-project.properties" &&
