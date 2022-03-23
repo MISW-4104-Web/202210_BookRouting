@@ -3,16 +3,16 @@ const execShPromise = require("exec-sh").promise;
 let fs = require("fs");
 
 const projects = [
-  /*{ name: "202212_Equipo01" },
+  { name: "202212_Equipo01" } /*,
   { name: "202212_Equipo02" },
-  { name: "202212_Equipo03" },*/
+  { name: "202212_Equipo03" },
   { name: "202212_Equipo04" },
   { name: "202212_Equipo05" },
   { name: "202212_Equipo06" },
   { name: "202212_Equipo07" },
   { name: "202212_Equipo08" },
   { name: "202212_Equipo09" },
-  { name: "202212_Equipo10" } /*,
+  { name: "202212_Equipo10" },
   { name: "202212_Equipo11" },
   { name: "202212_Equipo12" },
   { name: "202212_Equipo13" },
@@ -49,15 +49,28 @@ const updateRepos = async () => {
   let out;
   try {
     for (const project of projects) {
-      const result = getJenkinsfile(project.name);
+      // Quitar el jenkins file
+      // Hacer pull
+      // Crear el nuevo
+      // Hacer push
+      fs.unlinkSync("Jenkinsfile");
 
-      fs.writeFileSync("Jenkinsfile", result);
-
-      let command = `git remote rm origin && git add . &&
+      let command1 = `git remote rm origin &&
+       git add . &&
        git commit -m "Update Jenkinsfile" &&
        git remote add origin git@github.com:MISW-4104-Web/${project.name}.git &&
        git push origin master`;
-      out = await execShPromise(command, true);
+      out = await execShPromise(command1, true);
+
+      const result = getJenkinsfile(project.name);
+      fs.fs.writeFileSync("Jenkinsfile", result);
+
+      let command2 = `git remote rm origin &&
+       git add . &&
+       git commit -m "Update Jenkinsfile" &&
+       git remote add origin git@github.com:MISW-4104-Web/${project.name}.git &&
+       git push origin master`;
+      out = await execShPromise(command2, true);
     }
   } catch (e) {
     console.log("Error: ", e);
