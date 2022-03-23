@@ -96,6 +96,8 @@ function getSonarFile(repo) {
   sonar.ts.tslint.configPath=tslint.json
   sonar.javascript.lcov.reportPaths=coverage/front/lcov.info
   sonar.testExecutionReportPaths=reports/ut_report.xml`;
+
+  return content;
 }
 
 function getJenkinsFile(repo) {
