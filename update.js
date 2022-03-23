@@ -63,7 +63,7 @@ const updateRepos = async () => {
       out = await execShPromise(command1, true);
 
       const result = getJenkinsfile(project.name);
-      fs.fs.writeFileSync("Jenkinsfile", result);
+      fs.writeFileSync("Jenkinsfile", result);
 
       let command2 = `git remote rm origin &&
        git add . &&
