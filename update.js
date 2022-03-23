@@ -3,16 +3,16 @@ const execShPromise = require("exec-sh").promise;
 let fs = require("fs");
 
 const projects = [
-  //{ name: "202212_Equipo01" } ,
+  { name: "202212_Equipo01" },
   //{ name: "202212_Equipo02" },
   //{ name: "202212_Equipo03" },
-  { name: "202212_Equipo04" },
-  { name: "202212_Equipo05" },
-  { name: "202212_Equipo06" },
-  { name: "202212_Equipo07" },
-  { name: "202212_Equipo08" },
-  { name: "202212_Equipo09" },
-  { name: "202212_Equipo10" },
+  // { name: "202212_Equipo04" },
+  // { name: "202212_Equipo05" },
+  // { name: "202212_Equipo06" },
+  // { name: "202212_Equipo07" },
+  // { name: "202212_Equipo08" },
+  // { name: "202212_Equipo09" },
+  // { name: "202212_Equipo10" },
   // { name: "202212_Equipo11" },
   // { name: "202212_Equipo12" },
   // { name: "202212_Equipo13" },
@@ -49,25 +49,25 @@ const updateRepos = async () => {
   let out;
   try {
     for (const project of projects) {
-      // Quitar el jenkins file
-      // Hacer pull
-      // Crear el nuevo
-      // Hacer push
       fs.writeFileSync("Jenkinsfile", "//Jenkinsfile");
+      fs.writeFileSync("sonar-project.properties", "//Sonar properties file");
 
       let command1 = `git remote rm origin && git add . &&
-       git commit -m "Update Jenkinsfile" &&
+       git commit -m "Update Jenkinsfile and sonar-project.properties" &&
        git remote add origin git@github.com:MISW-4104-Web/${project.name}.git &&
        git pull origin master &&
        git push origin master`;
       out = await execShPromise(command1, true);
 
-      const result = getJenkinsfile(project.name);
-      fs.writeFileSync("Jenkinsfile", result);
+      const jenkinsFile = getJenkinsFile(project.name);
+      const sonarFile = getSonarFile(project.name);
+
+      fs.writeFileSync("Jenkinsfile", jenkinsFile);
+      fs.writeFileSync("sonar-project.properties", sonarFile);
 
       let command2 = `git remote rm origin &&
        git add . &&
-       git commit -m "Update Jenkinsfile" &&
+       git commit -m "Update Jenkinsfile and sonar-project.properties" &&
        git remote add origin git@github.com:MISW-4104-Web/${project.name}.git &&
        git push origin master`;
       out = await execShPromise(command2, true);
@@ -84,7 +84,21 @@ const updateRepos = async () => {
 
 updateRepos();
 
-function getJenkinsfile(repo) {
+function getSonarFile(repo) {
+  const content = `sonar.host.url=http://157.253.238.75:8080/sonar-misovirtual/
+  sonar.projectKey=${repo}:sonar
+  sonar.projectName=${repo}
+  sonar.projectVersion=1.0
+  sonar.sources=src/app
+  sonar.test=src/app
+  sonar.test.inclusions=**/*.spec.ts
+  sonar.exclusions=**/*.module.ts, **/utils/**
+  sonar.ts.tslint.configPath=tslint.json
+  sonar.javascript.lcov.reportPaths=coverage/front/lcov.info
+  sonar.testExecutionReportPaths=reports/ut_report.xml`;
+}
+
+function getJenkinsFile(repo) {
   const content = `pipeline {
     agent any
     environment {
