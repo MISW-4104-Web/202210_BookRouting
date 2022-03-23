@@ -1,8 +1,11 @@
-var execShPromise = require("exec-sh").promise;
+const execShPromise = require("exec-sh").promise;
+
+let fs = require("fs");
 
 const projects = [
+  { name: "202212_Equipo01" },
   { name: "202212_Equipo02" },
-  { name: "202212_Equipo03" },
+  /*{ name: "202212_Equipo03" },
   { name: "202212_Equipo04" },
   { name: "202212_Equipo05" },
   { name: "202212_Equipo06" },
@@ -39,17 +42,21 @@ const projects = [
   { name: "202212_Equipo37" },
   { name: "202212_Equipo38" },
   { name: "202212_Equipo39" },
-  { name: "202212_Equipo40" },
+  { name: "202212_Equipo40" },*/
 ];
 
 const updateRepos = async () => {
   let out;
-
   try {
     for (const project of projects) {
-      let command = `
-       git remote rm origin &&
-       git remote add origin git@github.com:MISW-4104-Web/${project.name}.git &&
+      const result = getJenkinsfile(project.name);
+
+      fs.writeFileSync("Jenkinsfile", result);
+
+      let command = `git add . &&
+       git commit -m "Update Jenkinsfile" &&
+       git remote set-url origin git@github.com:MISW-4104-Web/${project.name}.git &&
+       git pull origin master &&
        git push origin master`;
       out = await execShPromise(command, true);
     }
@@ -64,3 +71,89 @@ const updateRepos = async () => {
 };
 
 updateRepos();
+
+function getJenkinsfile(repo) {
+  const content = `pipeline {
+    agent any
+    environment {
+       GIT_REPO = '${repo}'
+       GIT_CREDENTIAL_ID = '277a9d46-cf19-4119-afd9-4054a7d35151'
+       SONARQUBE_URL = 'http://172.24.100.52:8082/sonar-misovirtual'
+    }
+    stages {
+       stage('Checkout') {
+          steps {
+             scmSkip(deleteBuild: true, skipPattern:'.*\\[ci-skip\\].*')
+
+             git branch: 'master',
+                credentialsId: env.GIT_CREDENTIAL_ID,
+                url: 'https://github.com/MISW-4104-Web/' + env.GIT_REPO
+          }
+       }
+       stage('Git Analysis') {
+          // Run git analysis
+          steps {
+             script {
+                docker.image('gitinspector-isis2603').inside('--entrypoint=""') {
+                   sh '''
+                      mkdir -p ./reports/
+                      datetime=$(date +'%Y-%m-%d_%H%M%S')
+                      gitinspector --file-types="cs,js,asax,ascx,asmx,aspx,html,fs,ts" --format=html --RxU -w -T -x author:Bocanegra -x author:estudiante > ./reports/index.html
+                   '''
+                }
+             }
+             withCredentials([usernamePassword(credentialsId: env.GIT_CREDENTIAL_ID, passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                sh('git config --global user.email "ci-isis2603@uniandes.edu.co"')
+                sh('git config --global user.name "ci-isis2603"')
+                sh('git add ./reports/index.html')
+                sh('git commit -m "[ci-skip] GitInspector report added"')
+                sh('git pull https://\${GIT_USERNAME}:\${GIT_PASSWORD}@github.com/MISW-4104-Web/\${GIT_REPO} master')
+                sh('git push https://\${GIT_USERNAME}:\${GIT_PASSWORD}@github.com/MISW-4104-Web/\${GIT_REPO} master')
+             }
+          }
+       }
+       stage('Build') {
+          // Build app
+          steps {
+             script {
+                docker.image('citools-isis2603:latest').inside('-u root') {
+                   sh '''
+                      npm i -s
+                      npm i typescript@4.6.2
+                      ng build
+                   '''
+                }
+             }
+          }
+       }
+      stage('Test') {
+          steps {
+             script {
+                docker.image('citools-isis2603:latest').inside('-u root') {
+                   sh '''
+                      ng test --watch=false --code-coverage true
+                      npm run sonar
+                   '''
+                }
+             }
+          }
+       }
+       stage('Static Analysis') {
+          // Run static analysis
+          steps {
+             sh '''
+                docker run --rm -u root -e SONAR_HOST_URL=\${SONARQUBE_URL} -v \${WORKSPACE}:/usr/src sonarsource/sonar-scanner-cli:4.3
+             '''
+          }
+       }
+    }
+    post {
+       always {
+          // Clean workspace
+          cleanWs deleteDirs: true
+       }
+    }
+  }
+  `;
+  return content;
+}
