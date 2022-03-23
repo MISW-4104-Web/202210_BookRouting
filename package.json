@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
+    "exec-sh": "^0.4.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -34,12 +35,12 @@
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.1.0",
+    "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "karma-coverage-istanbul-reporter": "~3.0.2",
-    "karma-sonarqube-unit-reporter": "0.0.23",
     "karma-mocha-reporter": "^2.2.5",
-    "typescript": "~4.6.2",
-    "sonar-scanner": "^3.1.0"
+    "karma-sonarqube-unit-reporter": "0.0.23",
+    "sonar-scanner": "^3.1.0",
+    "typescript": "~4.6.2"
   }
 }
