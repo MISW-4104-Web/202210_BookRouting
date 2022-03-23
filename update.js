@@ -53,7 +53,8 @@ const updateRepos = async () => {
 
       fs.writeFileSync("Jenkinsfile", result);
 
-      let command = `git add . &&
+      let command = `git remote rm origin &&
+       git add . &&
        git commit -m "Update Jenkinsfile" &&
        git remote add origin git@github.com:MISW-4104-Web/${project.name}.git &&
        git pull origin master &&
