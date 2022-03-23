@@ -49,9 +49,6 @@ const updateRepos = async () => {
   let out;
   try {
     for (const project of projects) {
-      fs.writeFileSync("Jenkinsfile", "");
-      fs.writeFileSync("sonar-project.properties", "");
-
       let command1 = `git remote rm origin && git add . &&
        git commit -m "Update Jenkinsfile and sonar-project.properties" &&
        git remote add origin git@github.com:MISW-4104-Web/${project.name}.git &&
@@ -71,6 +68,9 @@ const updateRepos = async () => {
        git remote add origin git@github.com:MISW-4104-Web/${project.name}.git &&
        git push origin master`;
       out = await execShPromise(command2, true);
+
+      fs.unlinkSync("Jenkinsfile");
+      fs.unlinkSync("sonar-project.properties");
     }
   } catch (e) {
     console.log("Error: ", e);
