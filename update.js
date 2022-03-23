@@ -14,7 +14,7 @@ const projects = [
   //{ name: "202212_Equipo09" },
   //{ name: "202212_Equipo10" },
   { name: "202212_Equipo11" },
-  { name: "202212_Equipo12" },
+  //{ name: "202212_Equipo12" },
   // { name: "202212_Equipo13" },
   // { name: "202212_Equipo14" },
   // { name: "202212_Equipo15" },

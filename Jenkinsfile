@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 pipeline {
     agent any
     environment {
@@ -9,6 +10,19 @@ pipeline {
        stage('Checkout') {
           steps {
              scmSkip(deleteBuild: true, skipPattern:'.*\\[ci-skip\\].*')
+=======
+pipeline {  
+   agent any
+   environment {
+      GIT_REPO = '202212_Equipo11'
+      GIT_CREDENTIAL_ID = '277a9d46-cf19-4119-afd9-4054a7d35151'
+      SONARQUBE_URL = 'http://172.24.100.52:8082/sonar-misovirtual'
+   }
+   stages {
+      stage('Checkout') {
+         steps {
+            scmSkip(deleteBuild: true, skipPattern:'.*\\[ci-skip\\].*')
+>>>>>>> 223ce9bc055905698cd675a12ccf3b47be6bd9e0
 
 
              git branch: 'master',
