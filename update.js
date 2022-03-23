@@ -83,7 +83,7 @@ function getJenkinsfile(repo) {
     stages {
        stage('Checkout') {
           steps {
-             scmSkip(deleteBuild: true, skipPattern:'.*\\[ci-skip\\].*')
+             scmSkip(deleteBuild: true, skipPattern:'.*\\\[ci-skip\\\].*')
 
              git branch: 'master',
                 credentialsId: env.GIT_CREDENTIAL_ID,
