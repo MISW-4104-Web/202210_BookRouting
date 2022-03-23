@@ -4,8 +4,8 @@ let fs = require("fs");
 
 const projects = [
   { name: "202212_Equipo01" },
-  { name: "202212_Equipo02" },
-  /*{ name: "202212_Equipo03" },
+  /*{ name: "202212_Equipo02" },
+  { name: "202212_Equipo03" },
   { name: "202212_Equipo04" },
   { name: "202212_Equipo05" },
   { name: "202212_Equipo06" },
@@ -55,7 +55,7 @@ const updateRepos = async () => {
 
       let command = `git add . &&
        git commit -m "Update Jenkinsfile" &&
-       git remote set-url origin git@github.com:MISW-4104-Web/${project.name}.git &&
+       git remote add origin git@github.com:MISW-4104-Web/${project.name}.git &&
        git pull origin master &&
        git push origin master`;
       out = await execShPromise(command, true);
