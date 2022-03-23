@@ -43,7 +43,6 @@ const projects = [
   { name: "202212_Equipo38" },
   { name: "202212_Equipo39" },
   { name: "202212_Equipo40" },*/
-  ,
 ];
 
 const updateRepos = async () => {
