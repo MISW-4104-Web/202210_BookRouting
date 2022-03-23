@@ -53,7 +53,7 @@ const updateRepos = async () => {
       // Hacer pull
       // Crear el nuevo
       // Hacer push
-      fs.writeFileSync("Jenkinsfile", "");
+      fs.writeFileSync("Jenkinsfile", "//Jenkinsfile");
 
       let command1 = `git add . &&
        git commit -m "Update Jenkinsfile" &&
