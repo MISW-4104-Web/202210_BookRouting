@@ -72,7 +72,7 @@ const updateRepos = async () => {
       fs.unlinkSync("Jenkinsfile");
       fs.unlinkSync("sonar-project.properties");
 
-      let command3 = `git reset --HARD`;
+      let command3 = `git reset --hard`;
       out = await execShPromise(command3, true);
     }
   } catch (e) {
