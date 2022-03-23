@@ -59,6 +59,7 @@ const updateRepos = async () => {
        git add . &&
        git commit -m "Update Jenkinsfile" &&
        git remote add origin git@github.com:MISW-4104-Web/${project.name}.git &&
+       git pull origin master &&
        git push origin master`;
       out = await execShPromise(command1, true);
 
