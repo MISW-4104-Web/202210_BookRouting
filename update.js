@@ -5,15 +5,14 @@ let fs = require("fs");
 const projects = [
   /*{ name: "202212_Equipo01" },
   { name: "202212_Equipo02" },
-  */
-  { name: "202212_Equipo03" } /*,
+  { name: "202212_Equipo03" },*/
   { name: "202212_Equipo04" },
-  { name: "202212_Equipo05" }
+  { name: "202212_Equipo05" },
   { name: "202212_Equipo06" },
   { name: "202212_Equipo07" },
   { name: "202212_Equipo08" },
   { name: "202212_Equipo09" },
-  { name: "202212_Equipo10" },
+  { name: "202212_Equipo10" } /*,
   { name: "202212_Equipo11" },
   { name: "202212_Equipo12" },
   { name: "202212_Equipo13" },
