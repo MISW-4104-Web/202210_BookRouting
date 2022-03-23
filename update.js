@@ -4,7 +4,7 @@ let fs = require("fs");
 
 const projects = [
   /*{ name: "202212_Equipo01" },*/
-  { name: "202212_Equipo02" },
+  { name: "202212_Equipo03" },
   /*{ name: "202212_Equipo03" },
   { name: "202212_Equipo04" },
   { name: "202212_Equipo05" }
