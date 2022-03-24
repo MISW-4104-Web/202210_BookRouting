@@ -1,6 +1,6 @@
 <testExecutions version="1">
   <file path="src/app/app.component.spec.ts">
-    <testCase name="AppComponent should have as title 'museums-front'" duration="118"/>
+    <testCase name="AppComponent should have as title 'base-project'" duration="118"/>
     <testCase name="AppComponent should create the app" duration="14"/>
     <testCase name="AppComponent should render title" duration="13"/>
   </file>
