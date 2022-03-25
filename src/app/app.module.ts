@@ -4,6 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthorRoutingModule } from './author/author-routing.module';
+import { AuthorModule } from './author/author.module';
+import { BookRoutingModule } from './book/book-routing.module';
 import { BookModule } from './book/book.module';
 import { EditorialModule } from './editorial/editorial.module';
 
@@ -16,7 +19,10 @@ import { EditorialModule } from './editorial/editorial.module';
     AppRoutingModule,
     BookModule,
     EditorialModule,
-    HttpClientModule
+    AuthorModule,
+    HttpClientModule,
+    BookRoutingModule,
+    AuthorRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

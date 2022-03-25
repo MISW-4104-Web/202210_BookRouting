@@ -1,0 +1,23 @@
+<div class="container-fluid mt-2">
+  <h2 class="text-center">Authors</h2>
+  <div *ngFor="let author of authors" class="book-card">
+    <div class="card p-2 mb-2" style="width: 12rem; height: 23rem">
+      <a
+        class="card-block text-decoration-none"
+        routerLink="/authors/{{ author.id }}"
+      >
+        <img
+          class="card-img-top"
+          src="{{ author.image }}"
+          alt="{{ author.name }}"
+        />
+        <div class="card-body black-text">
+          <h5 class="card-title">{{ author.name }}</h5>
+          <p class="card-text">
+            {{ author.birthDate }}
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

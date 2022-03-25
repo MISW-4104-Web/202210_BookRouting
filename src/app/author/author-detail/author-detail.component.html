@@ -1,0 +1,26 @@
+<div class="panel-body">
+  <div class="border margin p-3">
+    <p class="h3 p-2 author-name">{{ authorDetail?.name }}</p>
+    <p></p>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="thumb">
+          <img
+            class="img-fluid img-thumbnail border border-danger"
+            src="{{ authorDetail?.image }}"
+            alt="{{ authorDetail?.image }}"
+          />
+        </div>
+      </div>
+      <div class="col-md-7">
+        <dl>
+          <dt class="text-title">Bio</dt>
+          <dd class="text">{{ authorDetail?.description }}</dd>
+          <dt class="text-title">BirthDay</dt>
+          <dd class="text">{{ authorDetail?.birthDate }}</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <p class="h3 p-3">Books by this author:</p>
+</div>
