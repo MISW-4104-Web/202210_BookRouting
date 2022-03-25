@@ -5,7 +5,7 @@
   </file>
   <file path="src/app/app.component.spec.ts">
     <testCase name="AppComponent should create the app" duration="12"/>
-    <testCase name="AppComponent should have as title 'base-project'" duration="5"/>
+    <testCase name="AppComponent should have as title 'book-list'" duration="5"/>
   </file>
   <file path="src/app/book/book.service.spec.ts">
     <testCase name="Service: Book should ..." duration="3"/>
