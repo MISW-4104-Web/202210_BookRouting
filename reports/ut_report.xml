@@ -1,13 +1,17 @@
 <testExecutions version="1">
-  <file path="src/app/book/book-list/book-list.component.spec.ts">
-    <testCase name="BookListComponent should have an img element " duration="48"/>
-    <testCase name="BookListComponent should create" duration="8"/>
-  </file>
   <file path="src/app/app.component.spec.ts">
-    <testCase name="AppComponent should create the app" duration="12"/>
-    <testCase name="AppComponent should have as title 'book-list'" duration="5"/>
+    <testCase name="AppComponent should have as title 'book-list'" duration="45"/>
+    <testCase name="AppComponent should create the app" duration="5"/>
   </file>
   <file path="src/app/book/book.service.spec.ts">
-    <testCase name="Service: Book should ..." duration="3"/>
+    <testCase name="Service: Book should ..." duration="2"/>
+  </file>
+  <file path="src/app/book/book-list/book-list.component.spec.ts">
+    <testCase name="BookListComponent should have an img element " duration="20"/>
+    <testCase name="BookListComponent should create" duration="7"/>
+  </file>
+  <file path="src/app/book/book-detail/book-detail.component.spec.ts">
+    <testCase name="BookDetailComponent should create" duration="15"/>
+    <testCase name="BookDetailComponent should have an img element" duration="7"/>
   </file>
 </testExecutions>

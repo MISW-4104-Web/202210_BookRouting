@@ -7,8 +7,8 @@ import { faker } from '@faker-js/faker';
 import { BookListComponent } from './book-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Editorial } from 'src/app/editorial/editorial';
-import { Book } from '../book';
 import { BookService } from '../book.service';
+import { BookDetail } from '../book-detail';
 
 describe('BookListComponent', () => {
   let component: BookListComponent;
@@ -32,15 +32,17 @@ describe('BookListComponent', () => {
       faker.datatype.number(),
       faker.lorem.sentence()
     );
+
     component.books = [
-      new Book(
+      new BookDetail(
         faker.datatype.number(),
         faker.lorem.sentence(),
         faker.lorem.sentence(),
         faker.lorem.sentence(),
         faker.image.imageUrl(),
         faker.date.past(),
-        editorial
+        editorial,
+        [],[]
       ),
     ];
     fixture.detectChanges();
