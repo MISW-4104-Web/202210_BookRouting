@@ -2,10 +2,12 @@
   <app-book-detail [bookDetail]="selectedBook"></app-book-detail>
 </div>
 
+<hr />
+
 <div class="container-fluid">
   <div class="row">
-    <div *ngFor="let book of books" class="col">
-      <div class="card p-2" style="width: 17rem">
+    <div *ngFor="let book of books" class="col mb-2">
+      <div class="card p-2" style="width: 15rem; height: 33rem">
         <img
           class="card-img-top"
           src="{{ book.image }}"
