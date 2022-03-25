@@ -10,7 +10,7 @@ import { BookDetail } from './book-detail';
 })
 export class BookService {
 
-  private apiUrl: string = environment.baseUrl + 'books';
+  private apiUrl: string = environment.booksBaseUrl + 'books';
 
   constructor(private http: HttpClient) { }
 
