@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { BookDetail } from '../book-detail';
+import { BookService } from '../book.service';
 
 @Component({
   selector: 'app-book-detail',
@@ -8,16 +10,26 @@ import { BookDetail } from '../book-detail';
 })
 export class BookDetailComponent implements OnInit {
 
+  bookId!: string;
   @Input() bookDetail!: BookDetail;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private bookService: BookService) { }
 
-  getShortDate() {
-    let shortDate: String = this.bookDetail.publishingDate + '';
-    return shortDate.split('T')[0];
+  getBook(){
+    this.bookService.getBook(this.bookId).subscribe(book=>{
+      this.bookDetail = book;
+    })
   }
 
   ngOnInit() {
+    if(this.bookDetail === undefined){
+      this.bookId = this.route.snapshot.paramMap.get('id')!
+      if(this.bookId){
+        this.getBook();
+      }
+    }
   }
 
 }

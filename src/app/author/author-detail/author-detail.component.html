@@ -19,8 +19,16 @@
           <dt class="text-title">BirthDay</dt>
           <dd class="text">{{ authorDetail?.birthDate }}</dd>
         </dl>
+        <p class="h3">Books by this author:</p>
+        <ul>
+          <li
+            *ngFor="let book of authorDetail?.books"
+            routerLink="/books/{{ book.id }}"
+          >
+            {{ book.name }}
+          </li>
+        </ul>
       </div>
     </div>
   </div>
-  <p class="h3 p-3">Books by this author:</p>
 </div>

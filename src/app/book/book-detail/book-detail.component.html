@@ -14,14 +14,14 @@
       <dl>
         <dt>Authors</dt>
         <dd class="caption" *ngFor="let author of bookDetail.authors">
-          {{ author.name }}
+          <a routerLink="/authors/{{ author.id }}">{{ author.name }}</a>
         </dd>
 
         <dt>ISBN</dt>
         <dd>{{ bookDetail.isbn }}</dd>
         <hr />
         <dt>Publishing Date</dt>
-        <dd>{{ getShortDate() }}</dd>
+        <dd>{{ bookDetail.publishingDate }}</dd>
         <hr />
         <dt class="bold">Editorial</dt>
         <dd class="caption">{{ bookDetail.editorial.name }}</dd>
