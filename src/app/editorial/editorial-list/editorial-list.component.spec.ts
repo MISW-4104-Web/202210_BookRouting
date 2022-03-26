@@ -4,43 +4,42 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { faker } from '@faker-js/faker';
 
-import { AuthorDetailComponent } from './author-detail.component';
+import { EditorialListComponent } from './editorial-list.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthorDetail } from '../author-detail';
+import { EditorialDetail } from '../editorial-detail';
+import { Book } from 'src/app/book/book';
 
-describe('AuthorDetailComponent', () => {
-  let component: AuthorDetailComponent;
-  let fixture: ComponentFixture<AuthorDetailComponent>;
+describe('EditorialListComponent', () => {
+  let component: EditorialListComponent;
+  let fixture: ComponentFixture<EditorialListComponent>;
   let debug: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports:[HttpClientModule, RouterTestingModule],
-      declarations: [ AuthorDetailComponent ]
+      declarations: [ EditorialListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AuthorDetailComponent);
+    fixture = TestBed.createComponent(EditorialListComponent);
     component = fixture.componentInstance;
 
-    component.authorDetail = new AuthorDetail(
-      faker.datatype.number(), faker.lorem.sentence(),  faker.date.past(), faker.image.imageUrl(), faker.lorem.sentence(), []
-    );
+    component.editorials = [
+      new EditorialDetail(faker.datatype.number(), faker.lorem.sentence(), [])
+    ];
 
-    fixture.detectChanges();
     debug = fixture.debugElement;
+    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have an img element', () => {
-    expect(debug.query(By.css('img')).attributes['alt']).toEqual(
-      component.authorDetail.name
-    );
+  it('should have a p element ', () => {
+    expect(debug.query(By.css('p')).nativeElement.innerHTML).toContain(component.editorials[0].name)
   });
 });

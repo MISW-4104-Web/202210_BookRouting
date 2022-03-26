@@ -2,17 +2,17 @@
 
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed, async, inject } from '@angular/core/testing';
-import { AuthorService } from './author.service';
+import { EditorialService } from './editorial.service';
 
-describe('Service: Author', () => {
+describe('Service: Editorial', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [AuthorService]
+      providers: [EditorialService]
     });
   });
 
-  it('should ...', inject([AuthorService], (service: AuthorService) => {
+  it('should ...', inject([EditorialService], (service: EditorialService) => {
     expect(service).toBeTruthy();
   }));
 });

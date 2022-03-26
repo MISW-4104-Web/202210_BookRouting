@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthorService {
 
-  private apiUrl: string = environment.authorsBaseUrl + 'authors';
+  private apiUrl: string = environment.baseUrl + 'authors';
 
   constructor(private http: HttpClient) { }
 

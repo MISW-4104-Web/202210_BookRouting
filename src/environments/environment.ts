@@ -2,13 +2,11 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-const booksBaseUrl = 'https://1a6dd3e5-91a2-4f35-a39e-4d223b5a5c66.mock.pstmn.io/api/';
-const authorsBaseUrl= "https://defe3726-1014-45c5-a80c-e4f06c943a12.mock.pstmn.io/api/";
+const baseUrl = 'https://misw4104-api.herokuapp.com/api/';
 
 export const environment = {
   production: false,
-  booksBaseUrl,
-  authorsBaseUrl
+  baseUrl
 };
 
 /*

@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Editorial } from 'src/app/editorial/editorial';
 import { BookService } from '../book.service';
 import { BookDetail } from '../book-detail';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('BookListComponent', () => {
   let component: BookListComponent;
@@ -17,7 +18,7 @@ describe('BookListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
+      imports: [HttpClientModule, RouterTestingModule],
       declarations: [ BookListComponent ],
       providers: [ BookService ]
     })

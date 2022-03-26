@@ -21,8 +21,6 @@ import { EditorialModule } from './editorial/editorial.module';
     EditorialModule,
     AuthorModule,
     HttpClientModule,
-    BookRoutingModule,
-    AuthorRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
